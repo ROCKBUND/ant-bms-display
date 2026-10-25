@@ -1,0 +1,14 @@
+build/
+firmware/
+dist/
+.vscode/
+.idea/
+*.log
+*.bin
+*.elf
+*.map
+*.o
+*.obj
+__pycache__/
+.env
+.env.*
