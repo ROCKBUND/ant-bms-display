@@ -159,7 +159,7 @@ void setup() {
   pinMode(SD_CS,OUTPUT); digitalWrite(SD_CS,HIGH);
   pinMode(LCD_BL,OUTPUT); digitalWrite(LCD_BL,LOW);
   delay(200);
-  Serial.println("AntRound-S3 v0.7 power: LCD CS2 SCK3 DC18 MOSI10 RST21 BL42");
+  Serial.println("AntRound-S3 v0.11 power: LCD CS2 SCK3 DC18 MOSI10 RST21 BL42");
   Serial.printf("Flash=%lu MB PSRAM=%lu MB\n",
     (unsigned long)(ESP.getFlashChipSize()/1024/1024),
     (unsigned long)(ESP.getPsramSize()/1024/1024));
@@ -185,7 +185,7 @@ void setup() {
     Serial.println("Touch disabled: no touch hardware; use side buttons.");
   }
   bmsOK=startBms();
-  Serial.printf("AntRound-S3 v0.7 | touch=%d | free heap=%u | BLE task=%d\n",touchOK,ESP.getFreeHeap(),bmsOK);
+  Serial.printf("AntRound-S3 v0.11 | touch=%d | free heap=%u | BLE task=%d\n",touchOK,ESP.getFreeHeap(),bmsOK);
   if(!bmsOK) {
     panel.setCursor(40,100); panel.setTextColor(RED); panel.print("BLE memory error");
   }
@@ -200,6 +200,6 @@ void loop() {
     redraw=false; lastRender=now;
   }
   tickBatteryUi(now);
-  delay(5);
+  delay(1); // Yield to BLE while keeping the 25 ms UI schedule responsive.
 }
 
